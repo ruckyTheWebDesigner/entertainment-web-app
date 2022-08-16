@@ -79,7 +79,7 @@ function RegisterPage() {
   }
 
   return (
-    <div className='h-screen w-auto flex flex-col items-center'>
+    <div className='h-screen flex flex-col items-center overflow-hidden'>
       <div className='mt-28'>
         <img src={logoimg} alt='logo' />
       </div>

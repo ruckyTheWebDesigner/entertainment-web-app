@@ -44,13 +44,13 @@ function LoginPage() {
   };
 
   return (
-    <div className='h-screen flex flex-col items-center '>
+    <div className='h-screen flex flex-col items-center overflow-hidden'>
       <div className='mt-36'>
         <img src={logoimg} alt='logo' />
       </div>
       <form
         onSubmit={handleSubmit}
-        className=' mt-14 max-w-full bg-dark-blue p-10  rounded-xl'>
+        className=' mt-14 bg-dark-blue p-10 rounded-xl'>
         <div className='text-center mb-5'>
           <h3 className='text-3xl text-left'>Login</h3>
         </div>

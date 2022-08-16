@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [""]
+- Solution URL: ["https://www.frontendmentor.io/solutions/entertainment-web-app-using-react-nw6sj-X-j3"]
 - Live Site URL: ['https://entertainment-web-34fvjrk3l-ruckythewebdesigner.vercel.app/']
 
 ### Built with
@@ -43,6 +43,5 @@ Users should be able to:
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website -  ['https://rukewejoseph.com']
+- Frontend Mentor - ['https://www.frontendmentor.io/profile/ruckyTheWebDesigner']
