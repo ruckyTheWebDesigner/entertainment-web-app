@@ -1,13 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Outfit', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #10141e;
+  color: hsl(0, 0%, 100%);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+.appbar_icons > img:hover {
+  color: #fff;
+}
+
+input::-webkit-input-placeholder {
+  font-size: 0.8rem;
+}
+
+.upload_label {
+  font-size: 0.8rem;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email'] {
+  width: 100%;
+  padding: 12px 10px;
+  background-color: transparent;
+}
+
+input[type='text']:focus {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  /* margin: 40px; */
+  background: transparent;
+}
+
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='email']:focus {
+  outline: none;
+  background-color: transparent !important;
+}
+
+button:disabled,
+button[disabled] {
+  background: #fc4747;
+  border-radius: 6px;
+}
+
+input[type='file'] {
+}
+
+h6 {
+  font-size: 0.9rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.moviespage_wrapper {
+  display: flex;
+}
+
+.bookmarkicon_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #10141e;
+  width: 35px;
+  height: 35px;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
+.trending_card {
+  width: 500px;
+  height: 200px;
+  border-radius: 8px !important;
+  margin-right: 15px;
+  margin-bottom: 50px;
+}
+
+.recommended_card {
+  /* padding: 55px 15px; */
+  border-radius: 8px !important;
+  /* margin-right: 10px; */
+  /* margin-bottom: 20px; */
+}
+
+.recommended_wrapper {
+  display: grid;
+  gap: 20px;
+  overflow-x: scroll;
+}
+
+.search_result {
+  display: grid;
+  gap: 20px;
+}
+
+.icon_bookmark:hover {
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+}
+
+.minus_margin {
+  margin-bottom: -100px !important;
+}
+
+.sidebar {
+  background: #161d2f;
+  border-radius: 20px;
+}
+
+.moviespage_content {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .moviespage_wrapper {
+    flex-direction: column;
+  }
+
+  .moviespage_content {
+    width: auto;
+    padding: 10px 20px 30px 20px;
+  }
+
+  .recommended_wrapper,
+  .search_result {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .moviespage_content {
+    overflow-x: auto;
+    padding: 10px 30px;
+  }
+
+  .recommended_wrapper,
+  .search_result {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .recommended_wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 }

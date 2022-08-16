@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import DataContext from "./context/DataContext";
+import "./App.css";
+
+// import "dotenv/config";
+
+import HomePage from "./pages/home/HomePage";
+import LoginPage from "./pages/login/LoginPage";
+import RegisterPage from "./pages/register/RegisterPage";
+import MoviePage from "./pages/movies/MoviePage";
+import TvSeries from "./pages/tvseries/TvSeries";
+import BookMark from "./pages/bookmarked/BookMark";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataContext>
+      <Router>
+        <Routes>
+          <Route path='/' element={<RegisterPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/home' element={<HomePage />} />
+          <Route path='/movies' element={<MoviePage />} />
+          <Route path='/tvseries' element={<TvSeries />} />
+          <Route path='/bookmarked' element={<BookMark />} />
+        </Routes>
+      </Router>
+    </DataContext>
   );
 }
 
