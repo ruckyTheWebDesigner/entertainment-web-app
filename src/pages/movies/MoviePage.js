@@ -15,6 +15,7 @@ import { useAuthUser } from "@react-query-firebase/auth";
 
 function MoviePage() {
   const [data] = useContext(movieContext);
+  const navigate = useNavigate();
 
   const moviesCategory = data.filter((item) => item.category === "Movie");
 
@@ -39,8 +40,6 @@ function MoviePage() {
     });
   }, [resolution]);
 
-  const navigate = useNavigate();
-
   const handleChange = async (event) => {
     event.preventDefault();
     setSearch(event.target.value);
@@ -57,10 +56,6 @@ function MoviePage() {
     }
   };
 
-  if (!userData.data || userData.isIdle) {
-    navigate("/login", { replace: true });
-  }
-
   if (userData.isLoading) {
     return (
       <div className=' flex h-screen flex-col items-center justify-center'>
@@ -71,6 +66,10 @@ function MoviePage() {
 
   if (userData.isError) {
     return <div>Error</div>;
+  }
+
+  if (!userData.data || userData.isIdle) {
+    navigate("/login", { replace: true });
   }
 
   return (

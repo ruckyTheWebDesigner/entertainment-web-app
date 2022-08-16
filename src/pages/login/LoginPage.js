@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import { useAuthSignInWithEmailAndPassword } from "@react-query-firebase/auth";
-
+import Notify from "../../helpers/toast";
 import { useNavigate } from "react-router-dom";
 
 import logoimg from "../../assets/logo.svg";
@@ -10,7 +10,6 @@ import logoimg from "../../assets/logo.svg";
 import { auth } from "../../helpers/firebase";
 
 function LoginPage() {
-  const [loginStatus, setLoginStatus] = useState("");
   const [emailerror, setError] = useState("");
   const [passworderror, setPassError] = useState("");
   const [loadingButton, setLoadingButton] = useState(false);
@@ -19,12 +18,12 @@ function LoginPage() {
 
   const mutation = useAuthSignInWithEmailAndPassword(auth, {
     onSuccess: () => {
-      setLoginStatus("success");
-
+      Notify("User logged in successfully");
       navigate("/home");
     },
-    onError(error) {
-      console.log(error);
+    onError() {
+      Notify("An error occured, Try again");
+      setLoadingButton(false);
     },
   });
 
@@ -51,9 +50,9 @@ function LoginPage() {
       </div>
       <form
         onSubmit={handleSubmit}
-        className=' mt-14 mx-10 max-w-full bg-dark-blue p-10  rounded-lg'>
+        className=' mt-14 max-w-full bg-dark-blue p-10  rounded-xl'>
         <div className='text-center mb-5'>
-          <h3 className='text-2xl text-left'>Login</h3>
+          <h3 className='text-3xl text-left'>Login</h3>
         </div>
         <div className='border-b-2 border-slate-500 focus-within:border-red relative'>
           <input
@@ -86,12 +85,10 @@ function LoginPage() {
           ) : null}
         </div>
 
-        {loginStatus && <div className='text-center mt-4'>{loginStatus}</div>}
-
         <button
           disabled={loadingButton}
           type='submit'
-          className='bg-red w-full my-6 rounded-md py-2  border-0 text-sm hover:bg-white hover:text-slate-800'>
+          className='bg-red w-full my-8 rounded-md py-3 border-0 text-sm hover:bg-white hover:text-slate-800'>
           {loadingButton ? (
             <i className='fa fa-spinner fa-spin'></i>
           ) : (

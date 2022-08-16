@@ -2,8 +2,6 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import DataContext from "./context/DataContext";
 import "./App.css";
 
-// import "dotenv/config";
-
 import HomePage from "./pages/home/HomePage";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/register/RegisterPage";

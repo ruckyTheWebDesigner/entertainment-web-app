@@ -3,9 +3,9 @@ import { RecommendedCard } from "./CustomCard";
 
 function SearchResult({ numbersofresult, searchresult, search }) {
   return (
-    <div className='p-3'>
+    <div className='pt-3'>
       <h2 className='mb-3'>
-        Found {numbersofresult} results for "{search}"
+        Found {numbersofresult} results for '{search}'
       </h2>
       {numbersofresult > 0 && (
         <div className='search_result'>

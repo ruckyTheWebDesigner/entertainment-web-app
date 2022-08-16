@@ -14,21 +14,17 @@ import { Avatar } from "@mui/material";
 
 function RegisterPage() {
   const [file, setFile] = useState(null);
-  const [error, setError] = useState(null);
   const [emailerror, setemailError] = useState("");
   const [passworderror, setPassError] = useState("");
   const [confirmpassworderror, setConfirmPassError] = useState("");
+  const [loadingButton, setLoadingButton] = useState(false);
 
   const navigate = useNavigate();
 
   const mutation = useAuthCreateUserWithEmailAndPassword(auth, {
-    onSuccess: (user) => {
-      Notify("User Created Successfully");
-
-      // navigate("/home");
-    },
-    onError: (error) => {
+    onError: () => {
       Notify("An error occured, Try again");
+      setLoadingButton(false);
     },
   });
 
@@ -36,8 +32,9 @@ function RegisterPage() {
     onSuccess: () => {
       navigate("/home");
     },
-    onError: (error) => {
-      console.log(error);
+    onError: () => {
+      Notify("An error occured, Try again");
+      setLoadingButton(false);
     },
   });
 
@@ -59,7 +56,7 @@ function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (e.target.email.value === "") {
-      setError("Can't be empty");
+      setemailError("Can't be empty");
     } else if (e.target.password.value === "") {
       setPassError("Can't be empty");
     } else if (e.target.confirmpassword.value === "") {
@@ -69,6 +66,7 @@ function RegisterPage() {
       if (e.target.password.value !== e.target.confirmpassword.value) {
         setConfirmPassError("Password does not match");
       } else {
+        setLoadingButton(true);
         onSignUp(e.target.email.value, e.target.password.value, file);
       }
     }
@@ -76,23 +74,22 @@ function RegisterPage() {
 
   function handleChange(e) {
     if (e.target.files[0]) {
-      console.log(e.target.files[0]);
       setFile(e.target.files[0]);
     }
   }
 
   return (
-    <div className='h-screen flex flex-col items-center '>
-      <div className='mt-32'>
+    <div className='h-screen w-auto flex flex-col items-center'>
+      <div className='mt-28'>
         <img src={logoimg} alt='logo' />
       </div>
       <form
         onSubmit={handleSubmit}
-        className=' mt-12 mx-10 bg-dark-blue p-10  rounded-lg'>
+        className=' mt-12 bg-dark-blue p-8  rounded-xl'>
         <div className='text-center mb-5'>
-          <h3 className='text-2xl text-left'>Sign Up</h3>
+          <h3 className='text-3xl text-left'>Sign Up</h3>
         </div>
-        <div className='border-b-2 border-slate-500 focus-within:border-red relative'>
+        <div className='border-b-2 border-slate-500 focus-within:border-red relative pb-1'>
           <input
             type='email'
             name='email'
@@ -106,7 +103,7 @@ function RegisterPage() {
             </p>
           ) : null}
         </div>
-        <div className='border-b-2 border-slate-500 focus-within:border-red relative'>
+        <div className='border-b-2 border-slate-500 focus-within:border-red relative pb-1'>
           <input
             type='password'
             name='password'
@@ -119,7 +116,7 @@ function RegisterPage() {
             </p>
           ) : null}
         </div>
-        <div className='border-b-2 border-slate-500 focus-within:border-red relative'>
+        <div className='border-b-2 border-slate-500 focus-within:border-red relative pb-1'>
           <input
             type='password'
             name='confirmpassword'
@@ -132,7 +129,7 @@ function RegisterPage() {
             </p>
           ) : null}
         </div>
-        <div className='flex items-center border-b-2 py-3 pl-2 border-slate-500 focus-within:border-red relative'>
+        <div className='flex items-center border-b-2 py-4 pl-2 border-slate-500 focus-within:border-red relative '>
           <input
             type='file'
             name='file'
@@ -152,8 +149,15 @@ function RegisterPage() {
             />
           ) : null}
         </div>
-        <button className='bg-red w-full my-6 rounded-md py-2  border-0 text-sm hover:bg-white hover:text-slate-800'>
-          Create an account
+        <button
+          disabled={loadingButton}
+          type='submit'
+          className='bg-red w-full my-8 rounded-md py-3  border-0 text-sm hover:bg-white hover:text-slate-800'>
+          {loadingButton ? (
+            <i className='fa fa-spinner fa-spin'></i>
+          ) : (
+            "Create an account"
+          )}
         </button>
           
         <div className='flex align-middle text-sm justify-center'>
